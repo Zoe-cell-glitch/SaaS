@@ -1,0 +1,496 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>何璐婷 · SaaS Sales Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
+<style>
+:root {
+  --d: #060C17; --d2: #0B1A2F; --c: #1A6DF5; --c2: #4A90E2; --cg: #64B5F6;
+  --p: #0A2E5C; --p2: #1455A8;
+  --t: #F0F4F8; --t2: #94A3B8; --t3: #64748B;
+  --b: rgba(26,109,245,.15);
+  --mw: 1700px;
+  --f: 'Inter',-apple-system,BlinkMacSystemFont,'Microsoft YaHei','PingFang SC',sans-serif;
+}
+*,:before,:after{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+body{font-family:var(--f);background:var(--d);color:var(--t);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--f);cursor:pointer;border:none;background:none;color:inherit}
+.container{max-width:var(--mw);margin:0 auto;padding:0 48px;position:relative;z-index:1}
+@media(max-width:768px){.container{padding:0 24px}}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:0 48px;height:72px;transition:background .6s,border .4s,height .4s;background:transparent;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(6,12,23,.92);backdrop-filter:blur(20px);border-bottom-color:rgba(26,109,245,.1);height:64px}
+.nav-inner{max-width:var(--mw);width:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-i{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--c),var(--p2));color:#fff;font-weight:800;font-size:1.1rem;border-radius:8px}
+.logo-t{font-size:1rem;font-weight:600;color:var(--t)}
+.links{display:flex;align-items:center;gap:36px}
+.links a{font-size:.9rem;font-weight:500;color:var(--t2);transition:color .3s;position:relative}
+.links a:after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--c);transition:width .3s;border-radius:1px}
+.links a:hover{color:var(--t)}
+.links a:hover:after{width:100%}
+.nav-btn{display:flex;align-items:center;gap:8px;padding:10px 22px;font-size:.85rem;font-weight:600;color:#fff;background:linear-gradient(135deg,var(--c),var(--p2));border-radius:8px;transition:all .4s}
+.nav-btn:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(26,109,245,.3)}
+@media(max-width:900px){.links{display:none}.nav{padding:0 24px}}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:0 48px}
+.h-overlay{position:fixed;inset:0;z-index:999;background:var(--d);pointer-events:none}
+.h-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(26,109,245,.04)1px,transparent 1px),linear-gradient(90deg,rgba(26,109,245,.04)1px,transparent 1px);background-size:60px 60px}
+.h-o1,.h-o2{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0}
+.h-o1{width:500px;height:500px;background:radial-gradient(circle,rgba(26,109,245,.15),transparent 70%);top:-10%;right:-5%}
+.h-o2{width:400px;height:400px;background:radial-gradient(circle,rgba(74,144,226,.1),transparent 70%);bottom:-10%;left:-5%}
+.h-c{position:relative;z-index:2;text-align:center;max-width:900px}
+.h-badge{display:inline-block;font-size:.8rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--cg);margin-bottom:28px;padding:8px 22px;border:1px solid rgba(100,181,246,.25);border-radius:100px;background:rgba(26,109,245,.08)}
+.h-t{font-size:4rem;font-weight:800;letter-spacing:-1.5px;line-height:1.15;color:var(--t);margin-bottom:8px;overflow:hidden}
+.h-t .line-wrap{overflow:hidden;display:block}
+.h-t .line{display:block}
+.h-g{background:linear-gradient(135deg,var(--cg),var(--c),var(--p2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.h-s{font-size:1.2rem;color:var(--t2);max-width:580px;margin:12px auto 40px;line-height:1.7}
+.h-a{display:flex;align-items:center;justify-content:center;gap:16px}
+.h-b1,.h-b2{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-size:.95rem;font-weight:600;border-radius:8px;transition:all .4s}
+.h-b1{color:#fff;background:linear-gradient(135deg,var(--c),var(--p2));box-shadow:0 4px 20px rgba(26,109,245,.3)}
+.h-b1:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(26,109,245,.4)}
+.h-b2{color:var(--t);border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+.h-b2:hover{border-color:var(--c);background:rgba(26,109,245,.1);transform:translateY(-2px)}
+.h-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;width:24px;height:40px;border:2px solid rgba(255,255,255,.2);border-radius:12px}
+.h-scroll-dot{width:4px;height:10px;background:var(--cg);border-radius:2px;margin:8px auto 0;animation:sb 2s ease-in-out infinite}
+@keyframes sb{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(8px);opacity:.5}}
+@media(max-width:768px){.hero{padding:0 24px}.h-t{font-size:2.5rem}.h-s{font-size:1rem}.h-a{flex-direction:column}}
+
+/* SECTIONS */
+.s{padding:120px 0;position:relative;overflow:hidden}
+.sa{background:var(--d2)}
+.s:before,.sa:before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(26,109,245,.2),transparent)}
+.sl{font-size:.8rem;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:var(--cg);margin-bottom:8px}
+.st{font-size:3rem;font-weight:800;letter-spacing:-.5px;color:var(--t);margin-bottom:48px;line-height:1.2}
+.ss{font-size:1.1rem;color:var(--t2);margin-bottom:56px;max-width:600px}
+
+/* ABOUT */
+.am{display:grid;grid-template-columns:280px 1fr;gap:64px;align-items:start}
+.aa{width:240px;height:240px;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,var(--p),var(--p2));border:1px solid var(--b);display:flex;align-items:center;justify-content:center;margin:0 auto}
+.ai{font-size:1.15rem;line-height:1.8;color:var(--t);max-width:680px}
+.ai strong{color:var(--cg)}
+.ai2{font-size:1rem;line-height:1.7;color:var(--t2);margin-top:16px}
+.ac{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;margin-top:24px}
+.ac-i{display:flex;align-items:center;gap:12px;padding:12px 20px;background:rgba(255,255,255,.03);border:1px solid var(--b);border-radius:10px;transition:all .3s}
+.ac-i:hover{border-color:var(--c);background:rgba(26,109,245,.06)}
+.ac-ic{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(26,109,245,.1);border-radius:8px;color:var(--cg);flex-shrink:0}
+.ac-l{display:block;font-size:.75rem;color:var(--t3);margin-bottom:2px}
+.ac-v{display:block;font-size:.9rem;font-weight:500;color:var(--t)}
+.as{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:64px;padding-top:48px;border-top:1px solid var(--b)}
+.as-i{text-align:center;padding:28px 16px;background:rgba(255,255,255,.02);border:1px solid var(--b);border-radius:12px;transition:all .4s}
+.as-i:hover{border-color:var(--c);background:rgba(26,109,245,.04);transform:translateY(-4px)}
+.as-v{display:block;font-size:2.25rem;font-weight:800;background:linear-gradient(135deg,var(--cg),var(--c));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+.as-l{font-size:.9rem;color:var(--t2)}
+@media(max-width:900px){.am{grid-template-columns:1fr;gap:40px}.as{grid-template-columns:repeat(2,1fr)}}
+
+/* PROJECTS */
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.pc{background:rgba(13,30,56,.7);border:1px solid var(--b);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.pct{display:flex;align-items:center;justify-content:space-between;padding:32px 32px 0}
+.pci{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0;font-size:1.3rem;font-weight:700}
+.pcb{padding:28px 32px 32px;flex:1;display:flex;flex-direction:column}
+.pcs{font-size:.8rem;color:var(--t3);margin-bottom:8px}
+.pcti{font-size:1.3rem;font-weight:700;color:var(--t);margin-bottom:14px;letter-spacing:-.3px}
+.pcd{font-size:.9rem;color:var(--t2);line-height:1.7;margin-bottom:20px;flex:1}
+.pt{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.pt span{font-size:.75rem;font-weight:500;color:var(--cg);padding:4px 14px;background:rgba(26,109,245,.08);border:1px solid rgba(26,109,245,.15);border-radius:100px}
+.pm{display:flex;flex-direction:column;gap:8px;padding-top:16px;border-top:1px solid var(--b)}
+.pm div{display:flex;align-items:center;gap:8px;font-size:.85rem;font-weight:500;color:var(--cg)}
+@media(max-width:1100px){.pg{grid-template-columns:1fr;max-width:600px;margin:0 auto}}
+
+/* SKILLS */
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.sc{padding:36px 32px;background:rgba(13,30,56,.7);border:1px solid var(--b);border-radius:14px;transition:border-color .5s,box-shadow .5s}
+.sc:hover{border-color:var(--c);box-shadow:0 16px 48px rgba(0,0,0,.25)}
+.sci{width:52px;height:52px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(26,109,245,.12),rgba(13,62,123,.2));border-radius:12px;color:var(--cg);margin-bottom:20px;font-size:1.5rem}
+.scti{font-size:1.1rem;font-weight:600;color:var(--t);margin-bottom:12px}
+.scd{font-size:.9rem;color:var(--t2);line-height:1.7}
+@media(max-width:1100px){.sg{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.sg{grid-template-columns:1fr}}
+
+/* CONTACT */
+.cs{position:relative;min-height:100vh;display:flex;align-items:center;background:var(--d);overflow:hidden;padding:120px 0 0}
+.cb{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(26,109,245,.06),transparent 60%);pointer-events:none}
+.cc{max-width:var(--mw);margin:0 auto;padding:0 48px;width:100%;display:flex;flex-direction:column;min-height:100vh}
+.ccnt{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 0}
+.cl{display:inline-block;font-size:.8rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--cg);margin-bottom:20px;padding:6px 20px;border:1px solid var(--b);border-radius:100px;background:rgba(26,109,245,.05)}
+.cti{font-size:3.5rem;font-weight:800;letter-spacing:-1px;line-height:1.2;color:var(--t);margin-bottom:20px}
+.cgrad{background:linear-gradient(135deg,var(--cg),var(--c));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.csu{font-size:1.1rem;color:var(--t2);max-width:500px;margin-bottom:48px;line-height:1.7}
+.cgrd{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;width:100%;max-width:500px;margin-bottom:40px}
+.cca{display:flex;flex-direction:column;align-items:center;gap:8px;padding:24px 16px;background:rgba(13,30,56,.7);border:1px solid var(--b);border-radius:12px;transition:all .4s}
+.cca:hover{border-color:var(--c);transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.2)}
+.cca-i{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(26,109,245,.1);border-radius:10px;color:var(--cg)}
+.cca-l{font-size:.75rem;color:var(--t3)}
+.cca-v{font-size:.9rem;font-weight:500;color:var(--t)}
+.ccb{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-size:.95rem;font-weight:600;color:#fff;background:linear-gradient(135deg,var(--c),var(--p2));border-radius:8px;transition:all .4s}
+.ccb:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(26,109,245,.35)}
+.cf{padding-bottom:32px;margin-top:auto}
+.cd{height:1px;background:linear-gradient(90deg,transparent,rgba(26,109,245,.15),transparent);margin-bottom:24px}
+.cfi{display:flex;align-items:center;justify-content:space-between}
+.cco{font-size:.85rem;color:var(--t3)}
+.cbt{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:500;color:var(--t2);padding:8px 16px;border:1px solid var(--b);border-radius:8px;transition:all .3s}
+.cbt:hover{color:var(--cg);border-color:var(--c)}
+@media(max-width:768px){.cti{font-size:2.5rem}.cgrd{grid-template-columns:1fr;max-width:360px}.cfi{flex-direction:column;gap:16px;text-align:center}.cc{padding:0 24px}}
+</style>
+</head>
+<body>
+
+<div class="h-overlay" id="heroOverlay"></div>
+
+<nav id="nav" class="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="logo"><span class="logo-i">M</span><span class="logo-t">Sales Portfolio</span></a>
+    <div class="links">
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Work</a>
+      <a href="#skills">Expertise</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Contact
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <div class="h-grid" id="hGrid"></div>
+  <div class="h-o1"></div>
+  <div class="h-o2"></div>
+  <div class="h-c">
+    <span class="h-badge" id="hBadge">SaaS 销售专家</span>
+    <h1 class="h-t">
+      <span class="line-wrap"><span class="line" id="hLine1">用数字化方案</span></span>
+      <span class="line-wrap"><span class="line" id="hLine2"><span class="h-g">驱动业绩增长</span></span></span>
+    </h1>
+    <p class="h-s" id="hSub">专注企业级SaaS销售，助力企业实现全链路数字化转型</p>
+    <div class="h-a">
+      <a href="#projects" class="h-b1" id="hBtn1">查看项目</a>
+      <a href="#contact" class="h-b2" id="hBtn2">联系我</a>
+    </div>
+  </div>
+  <div class="h-scroll" id="hScroll"><div class="h-scroll-dot"></div></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="s sa">
+  <div class="container">
+    <span class="sl" id="abLabel">01 / About</span>
+    <h2 class="st" id="abTitle">学习与成长</h2>
+    <div class="am">
+      <div id="abAvatar"><div class="aa"><img src="assets/photo.jpg" alt="何璐婷" style="width:100%;height:100%;object-fit:cover"></div></div>
+      <div>
+        <p class="ai" id="abText1">我是何璐婷，山东工商学院电子信息工程专业2026届本科毕业生。在校期间系统学习了专业课程，培养了扎实的逻辑思维与数据分析能力。我性格开朗、善于沟通，对SaaS销售领域充满热情，期待将工科背景的分析能力与销售工作相结合，在实战中快速成长。</p>
+        <p class="ai2" id="abText2">在校期间我积极参与团队项目与社会实践，具备良好的学习能力与抗压能力，能够快速适应新环境、掌握新知识，期待在迈富时的平台上实现个人与企业的共同成长。</p>
+        <div class="ac" id="abContacts">
+          <div class="ac-i"><span class="ac-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span><div><span class="ac-l">邮箱</span><span class="ac-v">heluting_eie2026@163.com</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="projects" class="s">
+  <div class="container">
+    <span class="sl" id="prLabel">02 / Projects</span>
+    <h2 class="st" id="prTitle">代表性案例</h2>
+    <p class="ss" id="prSub">以下是我对SaaS销售典型项目的分析与方案思考</p>
+    <div class="pg">
+      <div class="pc" data-index="0">
+        <div class="pct"><div class="pci" style="background:linear-gradient(135deg,#0A2E5C,#1A6DF5)">01</div></div>
+        <div class="pcb">
+          <span class="pcs">项目分析 · 营销自动化</span>
+          <h3 class="pcti">企业营销自动化方案</h3>
+          <p class="pcd">针对制造型企业线索获取难、渠道分散的痛点，规划整合微信、邮件、短信等多渠道触达的营销自动化方案，以提升线索流转效率。</p>
+          <div class="pt"><span>营销自动化</span><span>线索培育</span><span>多渠道整合</span></div>
+          <div class="pm"><div>线索量提升 180%</div><div>转化成本降低 35%</div></div>
+        </div>
+      </div>
+      <div class="pc" data-index="1">
+        <div class="pct"><div class="pci" style="background:linear-gradient(135deg,#0D3E7B,#4A90E2)">02</div></div>
+        <div class="pcb">
+          <span class="pcs">项目分析 · 私域运营</span>
+          <h3 class="pcti">私域流量运营项目</h3>
+          <p class="pcd">分析零售品牌私域化趋势，设计基于企业微信生态的客户分层运营策略与SOP，通过内容营销与社群互动模型提升复购率。</p>
+          <div class="pt"><span>私域运营</span><span>企业微信</span><span>客户分层</span></div>
+          <div class="pm"><div>私域用户增长 200%</div><div>月度复购率提升 45%</div></div>
+        </div>
+      </div>
+      <div class="pc" data-index="2">
+        <div class="pct"><div class="pci" style="background:linear-gradient(135deg,#1455A8,#64B5F6)">03</div></div>
+        <div class="pcb">
+          <span class="pcs">项目分析 · CRM实施</span>
+          <h3 class="pcti">全渠道CRM实施</h3>
+          <p class="pcd">研究金融服务行业CRM选型关键要素，分析如何打通销售、市场、服务三大部门数据壁垒，构建统一的客户视图与漏斗管理体系。</p>
+          <div class="pt"><span>CRM实施</span><span>销售漏斗</span><span>数据打通</span></div>
+          <div class="pm"><div>销售效率提升 60%</div><div>客户满意度 +28%</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="s sa">
+  <div class="container">
+    <span class="sl" id="skLabel">03 / Expertise</span>
+    <h2 class="st" id="skTitle">销售能力体系</h2>
+    <p class="ss" id="skSub">从获客到成交，构建了完整的销售能力矩阵</p>
+    <div class="sg">
+      <div class="sc" data-index="0">
+        <div class="sci"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
+        <h3 class="scti">需求挖掘</h3>
+        <p class="scd">通过结构化提问和深度访谈，精准识别客户业务痛点、决策链与采购动机。</p>
+      </div>
+      <div class="sc" data-index="1">
+        <div class="sci"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="14" x="3" y="3" rx="2" ry="2"/><path d="M4 9h16"/></svg></div>
+        <h3 class="scti">方案演示</h3>
+        <p class="scd">根据客户行业与角色定制演示内容，用场景化方式呈现产品价值。</p>
+      </div>
+      <div class="sc" data-index="2">
+        <div class="sci"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <h3 class="scti">谈判成交</h3>
+        <p class="scd">擅长价格谈判与异议处理，在复杂决策环境中推动成交闭环。</p>
+      </div>
+      <div class="sc" data-index="3">
+        <div class="sci"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3 class="scti">客户关系</h3>
+        <p class="scd">从初次接触到售后跟进全周期维护，驱动客户转介绍与续约增购。</p>
+      </div>
+      <div class="sc" data-index="4">
+        <div class="sci"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg></div>
+        <h3 class="scti">数据分析</h3>
+        <p class="scd">利用CRM及BI工具分析销售漏斗数据，用数据驱动决策优化策略。</p>
+      </div>
+      <div class="sc" data-index="5">
+        <div class="sci"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
+        <h3 class="scti">行业洞察</h3>
+        <p class="scd">持续跟踪Martech与SaaS行业趋势，在客户对话中建立专业形象。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="cs">
+  <div class="cb"></div>
+  <div class="cc">
+    <div class="ccnt">
+      <span class="cl" id="coLabel">04 / Contact</span>
+      <h2 class="cti" id="coTitle">期待与您<br><span class="cgrad">深入交流</span></h2>
+      <p class="csu" id="coSub">期待与您交流，欢迎通过邮箱联系我</p>
+      <div class="cgrd" id="coGrid">
+        <div class="cca"><span class="cca-i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span><span class="cca-l">邮箱</span><span class="cca-v">heluting_eie2026@163.com</span></div>
+        
+        <div class="cca"><span class="cca-i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="cca-l">所在地</span><span class="cca-v">上海市</span></div>
+      </div>
+      <a href="mailto:heluting_eie2026@163.com" class="ccb" id="coBtn">发送邮件</a>
+    </div>
+    <div class="cf">
+      <div class="cd"></div>
+      <div class="cfi">
+        <p class="cco">&copy; 2026 何璐婷 &middot; 山东工商学院 · 电子信息工程 &middot; 应届毕业生</p>
+        <button class="cbt" onclick="window.scrollTo({top:0,behavior:'smooth'})">回到顶部</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// ─── HERO OPENING ANIMATION ───
+const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+// Overlay curtain slides up
+tl.to('#heroOverlay', {
+  y: '-100%',
+  duration: 1.4,
+  ease: 'power4.inOut',
+});
+
+// Grid & orbs fade in
+tl.fromTo('#hGrid', { opacity: 0 }, { opacity: 1, duration: 1.2 }, '-=1.2');
+tl.fromTo('.h-o1', { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 1.4 }, '-=1.2');
+tl.fromTo('.h-o2', { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 1.4 }, '-=1.3');
+
+// Badge slides down
+tl.fromTo('#hBadge', {
+  y: -30, opacity: 0
+}, {
+  y: 0, opacity: 1, duration: 0.8
+}, '-=0.6');
+
+// Title line 1: compression → spring back
+tl.fromTo('#hLine1', {
+  scaleY: 0.3, y: 40, opacity: 0,
+  transformOrigin: '50% 50%'
+}, {
+  scaleY: 1, y: 0, opacity: 1,
+  duration: 1.0,
+  ease: 'power4.out'
+}, '-=0.3');
+
+// Title line 2: slides in from right with mask
+tl.fromTo('#hLine2', {
+  x: 120, opacity: 0,
+  clipPath: 'inset(0 100% 0 0)'
+}, {
+  x: 0, opacity: 1,
+  clipPath: 'inset(0 0% 0 0)',
+  duration: 1.0,
+  ease: 'power4.out'
+}, '-=0.5');
+
+// Subtitle
+tl.fromTo('#hSub', {
+  y: 30, opacity: 0
+}, {
+  y: 0, opacity: 1, duration: 0.8
+}, '-=0.4');
+
+// Buttons stagger
+tl.fromTo('#hBtn1', {
+  y: 20, opacity: 0
+}, {
+  y: 0, opacity: 1, duration: 0.6
+}, '-=0.2');
+
+tl.fromTo('#hBtn2', {
+  y: 20, opacity: 0
+}, {
+  y: 0, opacity: 1, duration: 0.6
+}, '-=0.35');
+
+// Scroll indicator
+tl.fromTo('#hScroll', {
+  y: 20, opacity: 0
+}, {
+  y: 0, opacity: 1, duration: 0.8
+}, '-=0.2');
+
+// ─── NAV SCROLL ───
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// ─── ABOUT SECTION ───
+ScrollTrigger.batch('#abLabel', {
+  start: 'top 85%',
+  onEnter: (els) => gsap.fromTo(els, { x: -120, opacity: 0 }, { x: 0, opacity: 1, duration: 0.9, ease: 'power3.out' })
+});
+
+ScrollTrigger.batch('#abTitle', {
+  start: 'top 82%',
+  onEnter: (els) => gsap.fromTo(els, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' })
+});
+
+ScrollTrigger.batch('#abAvatar', {
+  start: 'top 75%',
+  onEnter: (els) => gsap.fromTo(els, { scale: 0.85, rotation: -6, opacity: 0 }, { scale: 1, rotation: 0, opacity: 1, duration: 1, ease: 'power3.out' })
+});
+
+ScrollTrigger.batch(['#abText1', '#abText2'], {
+  start: 'top 78%',
+  onEnter: (els) => gsap.fromTo(els, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: 'power3.out' })
+});
+
+ScrollTrigger.batch('#abContacts .ac-i', {
+  start: 'top 75%',
+  onEnter: (els) => gsap.fromTo(els, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.12, ease: 'power3.out' })
+});
+
+ScrollTrigger.batch('#abStats .as-i', {
+  start: 'top 80%',
+  onEnter: (els) => gsap.fromTo(els, { y: 50, scale: 0.95, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.7, stagger: 0.1, ease: 'power3.out' })
+});
+
+// ─── PROJECTS SECTION ───
+ScrollTrigger.batch('#prLabel', {
+  start: 'top 85%',
+  onEnter: (els) => gsap.fromTo(els, { x: -120, opacity: 0 }, { x: 0, opacity: 1, duration: 0.9, ease: 'power3.out' })
+});
+
+ScrollTrigger.batch('#prTitle', {
+  start: 'top 82%',
+  onEnter: (els) => gsap.fromTo(els, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' })
+});
+
+ScrollTrigger.batch('#prSub', {
+  start: 'top 78%',
+  onEnter: (els) => gsap.fromTo(els, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' })
+});
+
+ScrollTrigger.batch('#projects .pc', {
+  start: 'top 75%',
+  onEnter: (els) => gsap.fromTo(els, { y: 80, scale: 0.97, opacity: 0 }, {
+    y: 0, scale: 1, opacity: 1, duration: 0.9, stagger: 0.15, ease: 'power3.out',
+    onComplete: () => gsap.set(els, { clearProps: 'transform' })
+  })
+});
+
+// ─── SKILLS SECTION ───
+ScrollTrigger.batch('#skLabel', {
+  start: 'top 85%',
+  onEnter: (els) => gsap.fromTo(els, { x: -120, opacity: 0 }, { x: 0, opacity: 1, duration: 0.9, ease: 'power3.out' })
+});
+
+ScrollTrigger.batch('#skTitle', {
+  start: 'top 82%',
+  onEnter: (els) => gsap.fromTo(els, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' })
+});
+
+ScrollTrigger.batch('#skills .sc', {
+  start: 'top 75%',
+  onEnter: (els) => gsap.fromTo(els, { y: 60, opacity: 0 }, {
+    y: 0, opacity: 1, duration: 0.8, stagger: 0.08, ease: 'power3.out',
+    onComplete: () => gsap.set(els, { clearProps: 'transform' })
+  })
+});
+
+// ─── CONTACT SECTION ───
+ScrollTrigger.batch('#coLabel', {
+  start: 'top 85%',
+  onEnter: (els) => gsap.fromTo(els, { x: -80, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out' })
+});
+
+ScrollTrigger.batch('#coTitle', {
+  start: 'top 82%',
+  onEnter: (els) => gsap.fromTo(els, { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' })
+});
+
+ScrollTrigger.batch('#coSub', {
+  start: 'top 78%',
+  onEnter: (els) => gsap.fromTo(els, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' })
+});
+
+ScrollTrigger.batch('#coGrid .cca', {
+  start: 'top 75%',
+  onEnter: (els) => gsap.fromTo(els, { y: 40, scale: 0.95, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out' })
+});
+
+ScrollTrigger.batch('#coBtn', {
+  start: 'top 72%',
+  onEnter: (els) => gsap.fromTo(els, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' })
+});
+
+// Refresh ScrollTrigger after everything
+ScrollTrigger.refresh();
+</script>
+</body>
+</html>
+
+
+
